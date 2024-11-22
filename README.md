@@ -33,4 +33,5 @@ This model was trained with 2D-CNN architecture on [The augmented Alzheimer MRI 
 
 ### API Endpoint
 Dementia model v2: multiclass-api_v2.py
+
 Dementia model: multiclass-api.py
