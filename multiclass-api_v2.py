@@ -8,7 +8,7 @@ import io
 app = Flask(__name__)
 
 # Load the trained model
-model = load_model('model/dementia_model-cpu-v2.h5')
+model = load_model('/Users/mauliana/Documents/Work/GAIA/git_code/dementia_detection/model/dementia_model_gpu-v2.h5')
 
 # Define class labels
 class_labels = ['Mild Demented', 'Moderate Demented', 'Non Demented', 'Very Mild Demented']
@@ -37,12 +37,16 @@ def predict():
         predicted_class_index = np.argmax(predictions[0])
         predicted_class = class_labels[predicted_class_index]
         confidence = predictions[0][predicted_class_index] * 100
+
+        class_confidences = {class_labels[i]: float(predictions[0][i] * 100) for i in range(len(class_labels))}
+        sorted_confidences = dict(sorted(class_confidences.items(), key=lambda item: item[1], reverse=True))
+        filtered_confidences = {k: v for k, v in sorted_confidences.items() if v >= 10}
         
         # Build response
         response = {
             "predicted_class": predicted_class,
             "confidence": confidence,
-            "confidence_scores": {class_labels[i]: float(predictions[0][i] * 100) for i in range(len(class_labels))}
+            "confidence_scores": filtered_confidences
         }
         return jsonify(response)
     

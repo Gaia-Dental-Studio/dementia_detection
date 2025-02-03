@@ -22,8 +22,8 @@ if uploaded_file is not None:
             result = response.json()
             st.write(f"**Predicted Class:** {result['predicted_class']}")
             st.write(f"**Confidence:** {result['confidence']:.2f}%")
-            # st.write("**Confidence scores for each class:**")
-            # for class_name, score in result['confidence_scores'].items():
-            #     st.write(f"{class_name}: {score:.2f}%")
+            st.write("**Confidence scores for each class with threshold 10%:**")
+            for class_name, score in result['confidence_scores'].items():
+                st.write(f"{class_name}: {score:.2f}%")
         else:
             st.write("Error:", response.json().get("error"))
