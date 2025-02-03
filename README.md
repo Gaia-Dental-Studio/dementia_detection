@@ -1,5 +1,7 @@
 # Dementia Detection
 
+This repository consist of the helper code to deploy the dementia detection model.
+
 ### Technical Information (Dementia Model v2)
 This model was trained with 2D-CNN architecture on [The augmented Alzheimer MRI datasets](https://www.kaggle.com/datasets/uraninjo/augmented-alzheimer-mri-dataset/data) using Keras. The model is available [here](https://drive.google.com/drive/folders/1gTFjKmHUug2FAzspefsW3FvJHmqvte3-?usp=drive_link). The training was run with batch size 32, learning rate 0.001, and SGD optimizer. However, the iteration number (epoch) is set differently for CPU and GPU. The accuracy of both training processes is as follows:
 
